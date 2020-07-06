@@ -1,21 +1,23 @@
-﻿using MySql.Data.MySqlClient;
-using PuntoDeVentaDemo.COMMON.Interfaces;
+﻿using PuntoDeVentaDemo.COMMON.Interfaces;
 using System;
 using System.Data;
+using System.Data.SqlClient;
 
-namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
+
+namespace PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer
 {
-    public class MySqlWOConnection : IMySqlWOConnection
+    public class SQLServerConnection : IDB
     {
-        private MySqlConnection conexion;
-        public MySqlWOConnection()
+        SqlConnection _connection;
+
+        public SQLServerConnection()
         {
-            string server = "";
-            string database = "";
-            string uid = "";
-            string password = "";
-            conexion = new MySqlConnection
-                ($"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};SslMode=none;");
+            string server = @"GUSTAVO";
+            string database = "tienda";
+            string uid = "tiendauser";
+            string password = "12345";
+            _connection = new SqlConnection
+                ($"Data Source={server};Initial Catalog={database};Persist Security Info=True;User ID={uid};Password={password}");
             Conectar();
         }
 
@@ -24,11 +26,11 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
         {
             try
             {
-                conexion.Open();
+                _connection.Open();
                 Error = "";
                 return true;
             }
-            catch (MySqlException ex)
+            catch (SqlException ex)
             {
                 Error = ex.Message;
                 return false;
@@ -42,7 +44,7 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
         {
             try
             {
-                MySqlCommand cmd = new MySqlCommand(command, conexion);
+                SqlCommand cmd = new SqlCommand(command, _connection);
                 cmd.ExecuteNonQuery();
                 Error = "";
                 return true;
@@ -59,8 +61,8 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
         {
             try
             {
-                MySqlCommand cmd = new MySqlCommand(consulta, conexion);
-                MySqlDataReader dr = cmd.ExecuteReader();
+                SqlCommand cmd = new SqlCommand(consulta, _connection);
+                SqlDataReader dr = cmd.ExecuteReader();
                 Error = "";
                 return dr;
             }
@@ -72,11 +74,11 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
             }
         }
 
-        ~MySqlWOConnection()
+        ~SQLServerConnection()
         {
-            if (conexion.State == ConnectionState.Open)
+            if (_connection.State == ConnectionState.Open)
             {
-                conexion.Close();
+                _connection.Close();
             }
         }
     }

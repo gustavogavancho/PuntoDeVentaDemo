@@ -1,6 +1,6 @@
 ﻿namespace PuntoDeVentaDemo.COMMON.Interfaces
 {
-    public interface IMySqlWOConnection
+    public interface IDB
     {
         string Error { get; }
         bool Comando(string command);

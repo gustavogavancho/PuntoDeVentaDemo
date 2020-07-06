@@ -1,19 +1,19 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
-using MySql.Data.MySqlClient;
 using PuntoDeVentaDemo.COMMON.Entidades;
 using PuntoDeVentaDemo.COMMON.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
+namespace PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseDTO
     {
-        private MySqlWBConnection _db;
+        private SQLServerConnection _db;
         private bool _idEsAutonumerico;
         private AbstractValidator<T> _validator;
 
@@ -21,7 +21,7 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
         {
             _validator = validator;
             _idEsAutonumerico = idEsAutonumerico;
-            _db = new MySqlWBConnection();
+            _db = new SQLServerConnection();
         }
 
         public string Error { get; private set; }
@@ -33,7 +33,7 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
                 try
                 {
                     string sql = string.Format($"SELECT * FROM {typeof(T).Name}");
-                    MySqlDataReader r = (MySqlDataReader)_db.Consulta(sql);
+                    SqlDataReader r = (SqlDataReader)_db.Consulta(sql);
                     List<T> datos = new List<T>();
                     var campos = typeof(T).GetProperties();
                     T dato;
@@ -86,14 +86,14 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
                             break;
                         case "DateTime":
                             DateTime v = (DateTime)valor;
-                            sql2 += $"'{v.Year}-{v.Month}-{v.Day} {v.Hour}:{v.Minute}:00'";
+                            sql2 += $"convert(datetime, '{v.Day}-{v.Month}-{v.Year.ToString().Substring(2, 2)} {v.Hour}:{v.Minute}:{v.Second}',5)";
                             break;
                         default:
                             sql2 += $" {valor}";
                             break;
                     }
 
-                    if (i != campos.Length -1)
+                    if (i != campos.Length - 1)
                     {
                         sql1 += $" ,";
                         sql2 += $" ,";
@@ -181,7 +181,7 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
                         sql += $" {id}";
                         break;
                 }
-                MySqlDataReader r = (MySqlDataReader)_db.Consulta(sql);
+                SqlDataReader r = (SqlDataReader)_db.Consulta(sql);
                 T dato = (T)Activator.CreateInstance(typeof(T));
                 int j = 0;
                 while (r.Read())
@@ -217,8 +217,8 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
         {
             try
             {
-                string sql1 = "UPDATE " + typeof(T).Name + " SET ";
-                string sql2 = " WHERE ";
+                string sql1 = $"UPDATE {typeof(T).Name} SET";
+                string sql2 = $" WHERE ";
                 string sql = "";
                 var campos = typeof(T).GetProperties();
                 T dato = (T)Activator.CreateInstance(typeof(T));
@@ -227,7 +227,7 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
                 {
                     var propiedad = Ttypo.GetProperty(campos[i].Name);
                     var valor = propiedad.GetValue(entidad);
-                    sql += propiedad.Name + "=";
+                    sql += $"{propiedad.PropertyType.Name}=";
                     switch (propiedad.PropertyType.Name)
                     {
                         case "String":
@@ -238,14 +238,14 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
                             sql += $"'{v.Year}-{v.Month}-{v.Day} {v.Hour}:{v.Minute}:00'";
                             break;
                         default:
-                            sql += " " +valor;
+                            sql += $" {valor}";
                             break;
                     }
                     if (i == 0)
                     {
                         sql2 += sql;
                     }
-                    if (i != campos.Length -1)
+                    if (i != campos.Length - 1)
                     {
                         sql += " ,";
                     }
