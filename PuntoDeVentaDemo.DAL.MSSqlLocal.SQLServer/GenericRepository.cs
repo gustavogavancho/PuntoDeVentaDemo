@@ -86,10 +86,10 @@ namespace PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer
                             break;
                         case "DateTime":
                             DateTime v = (DateTime)valor;
-                            sql2 += $"convert(datetime, '{v.Day}-{v.Month}-{v.Year.ToString().Substring(2, 2)} {v.Hour}:{v.Minute}:{v.Second}',5)";
+                            sql2 += $"'{v.Year}-{v.Month}-{v.Day} {v.Hour}:{v.Minute}:00'";
                             break;
                         default:
-                            sql2 += $" {valor}";
+                            sql2 += " " + valor;
                             break;
                     }
 
@@ -217,8 +217,8 @@ namespace PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer
         {
             try
             {
-                string sql1 = $"UPDATE {typeof(T).Name} SET";
-                string sql2 = $" WHERE ";
+                string sql1 = "UPDATE " + typeof(T).Name + " SET ";
+                string sql2 = " WHERE ";
                 string sql = "";
                 var campos = typeof(T).GetProperties();
                 T dato = (T)Activator.CreateInstance(typeof(T));
@@ -227,7 +227,7 @@ namespace PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer
                 {
                     var propiedad = Ttypo.GetProperty(campos[i].Name);
                     var valor = propiedad.GetValue(entidad);
-                    sql += $"{propiedad.PropertyType.Name}=";
+                    sql += propiedad.Name + "=";
                     switch (propiedad.PropertyType.Name)
                     {
                         case "String":
@@ -238,7 +238,7 @@ namespace PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer
                             sql += $"'{v.Year}-{v.Month}-{v.Day} {v.Hour}:{v.Minute}:00'";
                             break;
                         default:
-                            sql += $" {valor}";
+                            sql += " " + valor;
                             break;
                     }
                     if (i == 0)
