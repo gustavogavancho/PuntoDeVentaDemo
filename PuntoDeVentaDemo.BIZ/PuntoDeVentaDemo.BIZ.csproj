@@ -1,7 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PuntoDeVentaDemo.COMMON\PuntoDeVentaDemo.COMMON.csproj" />
+    <ProjectReference Include="..\PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer\PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer.csproj" />
+    <ProjectReference Include="..\PuntoDeVentaDemo.DAL.XAMPP.MySQL\PuntoDeVentaDemo.DAL.XAMPP.MySQL.csproj" />
+  </ItemGroup>
 
 </Project>

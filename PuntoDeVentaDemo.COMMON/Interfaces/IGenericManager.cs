@@ -37,9 +37,9 @@ namespace PuntoDeVentaDemo.COMMON.Interfaces
         /// <summary>
         /// Eliminar una entidad en base al Id proporcionado
         /// </summary>
-        /// <param name="entidad">Id de la entidad a eliminar</param>
+        /// <param name="id">Id de la entidad a eliminar</param>
         /// <returns>Confirmación de eliminación</returns>
-        bool Eliminar(T entidad);
+        bool Eliminar(string id);
 
         /// <summary>
         /// Obtiene un elemento de acuerdo a su Id

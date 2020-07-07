@@ -2,6 +2,7 @@
 using PuntoDeVentaDemo.COMMON.Interfaces;
 using System;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 
@@ -21,7 +22,6 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
                 ($"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};SslMode=none;");
             Conectar();
         }
-
 
         private bool Conectar()
         {
