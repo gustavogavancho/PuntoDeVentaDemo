@@ -36,6 +36,9 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
             if (user != null)
             {
                 MessageBox.Show("Bienvenido " + user.Nombres, "Tienda", MessageBoxButton.OK, MessageBoxImage.Information);
+                MainWindow ventana = new MainWindow(user);
+                ventana.Show();
+                this.Close();
             }
             else
             {

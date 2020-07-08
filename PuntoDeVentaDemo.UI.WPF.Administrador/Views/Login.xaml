@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PuntoDeVentaDemo.UI.WPF.Administrador.Views"
         mc:Ignorable="d"
-        Title="Tienda -Login" Height="450" Width="300">
+        Title="Tienda -Login" Height="450" Width="300"
+        ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,7 +14,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Background="{StaticResource BrushPrimaryColor}" VerticalAlignment="Center">
-            <Label Content="{StaticResource ImgCarrito}" Width="100" />
+            <Label Content="{StaticResource ImgCarrito}" Width="150" />
             <Label x:Name="lblTitulo" Style="{StaticResource LabelTitulo}" Content="Mi Tienda"/>
         </StackPanel>
 

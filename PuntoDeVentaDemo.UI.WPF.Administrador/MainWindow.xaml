@@ -3,10 +3,37 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:menu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
         xmlns:local="clr-namespace:PuntoDeVentaDemo.UI.WPF.Administrador"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <menu:HamburgerMenu Grid.Column="0" Background="{StaticResource BrushPrimaryColor}" MenuItemForeground="{StaticResource BrushTextIcons}" MenuIconColor="{StaticResource BrushTextIcons}" SelectionIndicatorColor="{StaticResource BrushAccentColor}">
+            <menu:HamburgerMenuItem Text="Home" Icon="/Imagenes/home.png" x:Name="MenuHome" Selected="MenuHome_Selected"/>
+            <menu:HamburgerMenuItem Text="Productos" Icon="/Imagenes/productos.png" x:Name="MenuProductos" Selected="MenuProductos_Selected"/>
+            <menu:HamburgerMenuItem Text="Usuarios" Icon="/Imagenes/usuarios.png" x:Name="MenuUsuarios" Selected="MenuUsuarios_Selected"/>
+            <menu:HamburgerMenuItem Text="Ventas" Icon="/Imagenes/ventas.png" x:Name="MenuVentas" Selected="MenuVentas_Selected"/>
+        </menu:HamburgerMenu>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Background="{StaticResource BrushPrimaryColor}">
+                <Label Content="Tienda" Style="{StaticResource LabelTitulo}"/>
+            </StackPanel>
+            <ScrollViewer x:Name="Contenedor" Grid.Row="1">
+                
+            </ScrollViewer>
+            <StackPanel Grid.Row="2">
+                <Label x:Name="LblUsuario"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

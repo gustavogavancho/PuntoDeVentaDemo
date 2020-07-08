@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PuntoDeVentaDemo.COMMON.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,30 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(usuario usr)
         {
             InitializeComponent();
+            LblUsuario.Content = $"[{usr.NombreDeUsuario}] {usr.Nombres} {usr.Apellidos}";
+        }
+
+        private void MenuHome_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuProductos_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuUsuarios_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuVentas_Selected(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
