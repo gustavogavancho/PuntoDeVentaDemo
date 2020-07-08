@@ -1,4 +1,5 @@
 ﻿using PuntoDeVentaDemo.COMMON.Entidades;
+using PuntoDeVentaDemo.UI.WPF.Administrador.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,12 +30,18 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador
 
         private void MenuHome_Selected(object sender, RoutedEventArgs e)
         {
-
+            MostrarContenido(null);
         }
 
         private void MenuProductos_Selected(object sender, RoutedEventArgs e)
         {
+            MostrarContenido(new ProductosUserControl());
+        }
 
+        private void MostrarContenido(UserControl control)
+        {
+            Contenedor.Content = null;
+            Contenedor.Content = control;         
         }
 
         private void MenuUsuarios_Selected(object sender, RoutedEventArgs e)

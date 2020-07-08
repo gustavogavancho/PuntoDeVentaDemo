@@ -171,23 +171,23 @@
     </Style>
 
     <Style TargetType="Button" x:Key="BtnNuevo" BasedOn="{StaticResource BtnSimple}">
-        <Setter Property="Content" Value="{StaticResource imgNew}"/>
+        <Setter Property="Content" Value="{StaticResource ImgNew}"/>
     </Style>
 
     <Style TargetType="Button" x:Key="BtnEditar" BasedOn="{StaticResource BtnSimple}">
-        <Setter Property="Content" Value="{StaticResource imgEdit}"/>
+        <Setter Property="Content" Value="{StaticResource ImgEdit}"/>
     </Style>
 
     <Style TargetType="Button" x:Key="BtnGuardar" BasedOn="{StaticResource BtnSimple}">
-        <Setter Property="Content" Value="{StaticResource imgSave}"/>
+        <Setter Property="Content" Value="{StaticResource ImgSave}"/>
     </Style>
 
     <Style TargetType="Button" x:Key="BtnCancelar" BasedOn="{StaticResource BtnSimple}">
-        <Setter Property="Content" Value="{StaticResource imgDeshacer}"/>
+        <Setter Property="Content" Value="{StaticResource ImgDeshacer}"/>
     </Style>
 
     <Style TargetType="Button" x:Key="BtnEliminar" BasedOn="{StaticResource BtnSimple}">
-        <Setter Property="Content" Value="{StaticResource imgDelete}"/>
+        <Setter Property="Content" Value="{StaticResource ImgDelete}"/>
     </Style>
 
 </ResourceDictionary>
