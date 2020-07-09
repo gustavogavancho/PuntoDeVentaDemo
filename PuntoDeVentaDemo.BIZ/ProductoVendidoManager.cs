@@ -2,6 +2,7 @@
 using PuntoDeVentaDemo.COMMON.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PuntoDeVentaDemo.BIZ
 {
@@ -14,6 +15,11 @@ namespace PuntoDeVentaDemo.BIZ
         public IEnumerable<productovendido> ProductosDeUnaVenta(int idVenta)
         {
             return _repositorio.Query(p => p.IdVenta == idVenta);
+        }
+
+        public int TotalDeProductosVendidos(int idProducto)
+        {
+            return _repositorio.Query(p => p.IdProducto == idProducto).Sum(v => v.Cantidad);
         }
     }
 }

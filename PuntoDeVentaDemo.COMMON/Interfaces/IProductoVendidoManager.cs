@@ -14,5 +14,6 @@ namespace PuntoDeVentaDemo.COMMON.Interfaces
         /// <param name="idVenta">Id de la venta</param>
         /// <returns>Conjunto de productos contenidos en una venta</returns>
         IEnumerable<productovendido> ProductosDeUnaVenta(int idVenta);
+        int TotalDeProductosVendidos(int idProducto);
     }
 }

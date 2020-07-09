@@ -32,7 +32,7 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador
 
         private void MenuHome_Selected(object sender, RoutedEventArgs e)
         {
-            MostrarContenido(null);
+            MostrarContenido(new HomeUserControl());
         }
 
         private void MenuProductos_Selected(object sender, RoutedEventArgs e)

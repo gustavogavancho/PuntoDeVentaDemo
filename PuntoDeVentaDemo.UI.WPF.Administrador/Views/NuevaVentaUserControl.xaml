@@ -31,8 +31,13 @@
                 <Button Style="{StaticResource BtnEliminar}" x:Name="BtnEliminarArticulo" Background="{StaticResource BrushAlertColor}" Click="BtnEliminarArticulo_Click"/>
             </StackPanel>
         </WrapPanel>
-        <DataGrid Grid.Row="2" x:Name="DtgDatos">
-            
+        <DataGrid Grid.Row="2" x:Name="DtgDatos" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Cant." Binding="{Binding Productovendido.Cantidad}"/>
+                <DataGridTextColumn Header="Producto." Binding="{Binding Producto.Nombre}"/>
+                <DataGridTextColumn Header="Costo" Binding="{Binding Productovendido.Costo}"/>
+                <DataGridTextColumn Header="Total" Binding="{Binding Total}"/>
+            </DataGrid.Columns>
         </DataGrid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3">
             <Label Style="{StaticResource LabelTitulo}" Content="Total: $"/>
