@@ -1,4 +1,5 @@
 ﻿using PuntoDeVentaDemo.COMMON.Entidades;
+using PuntoDeVentaDemo.UI.WPF.Administrador.Tools;
 using PuntoDeVentaDemo.UI.WPF.Administrador.Views;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador
         {
             InitializeComponent();
             LblUsuario.Content = $"[{usr.NombreDeUsuario}] {usr.Nombres} {usr.Apellidos}";
+            Tools.Tools.Usuario = usr;
         }
 
         private void MenuHome_Selected(object sender, RoutedEventArgs e)
@@ -51,7 +53,7 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador
 
         private void MenuVentas_Selected(object sender, RoutedEventArgs e)
         {
-
+            MostrarContenido(new VentasUserControl(Contenedor));
         }
     }
 }

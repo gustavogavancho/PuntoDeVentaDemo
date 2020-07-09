@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="PuntoDeVentaDemo.UI.WPF.Administrador.Views.NuevaVentaUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PuntoDeVentaDemo.UI.WPF.Administrador.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="0">
+            <Label Style="{StaticResource LabelTitulo}" Content="Nueva Venta:"/>
+            <Button Style="{StaticResource BtnGuardar}" x:Name="BtnGuardar" Click="BtnGuardar_Click"/>
+        </WrapPanel>
+        <WrapPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Cliente:"/>
+                <TextBox x:Name="TxtCliente" Width="300"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Cantidad:"/>
+                <TextBox x:Name="TxtCantidad"/>
+                <Label Content="Producto"/>
+                <ComboBox x:Name="CmbProducto" Width="300" Margin="20 0"/>
+                <Button Style="{StaticResource BtnNuevo}" x:Name="BtnAgregarArticulo" Click="BtnAgregarArticulo_Click"/>
+                <Button Style="{StaticResource BtnEliminar}" x:Name="BtnEliminarArticulo" Background="{StaticResource BrushAlertColor}" Click="BtnEliminarArticulo_Click"/>
+            </StackPanel>
+        </WrapPanel>
+        <DataGrid Grid.Row="2" x:Name="DtgDatos">
+            
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3">
+            <Label Style="{StaticResource LabelTitulo}" Content="Total: $"/>
+            <Label x:Name="LblTotal" Style="{StaticResource LabelTitulo}" Content="0.00"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

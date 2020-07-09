@@ -44,9 +44,9 @@ namespace PuntoDeVentaDemo.BIZ
             switch (_origen)
             {
                 case "MySql":
-                    return new VentaManager(new DAL.XAMPP.MySQL.GenericRepository<venta>(new VentaValidator()));
+                    return new VentaManager(new DAL.XAMPP.MySQL.GenericRepository<venta>(new VentaValidator()), ProductVendidoManager(), UsuarioManager(), ProductoManager());
                 case "MSSQL":
-                    return new VentaManager(new DAL.MSSqlLocal.SQLServer.GenericRepository<venta>(new VentaValidator()));
+                    return new VentaManager(new DAL.MSSqlLocal.SQLServer.GenericRepository<venta>(new VentaValidator()), ProductVendidoManager(), UsuarioManager(), ProductoManager());
                 default:
                     return null;
             }

@@ -119,11 +119,17 @@
     <Compile Include="Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NuevaVentaUserControl.xaml.cs">
+      <DependentUpon>NuevaVentaUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProductosUserControl.xaml.cs">
       <DependentUpon>ProductosUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UsuariosUserControl.xaml.cs">
       <DependentUpon>UsuariosUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VentasUserControl.xaml.cs">
+      <DependentUpon>VentasUserControl.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -145,11 +151,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\NuevaVentaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ProductosUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UsuariosUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VentasUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
