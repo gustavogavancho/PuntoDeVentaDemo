@@ -46,7 +46,7 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador
 
         private void MenuUsuarios_Selected(object sender, RoutedEventArgs e)
         {
-
+            MostrarContenido(new UsuariosUserControl());
         }
 
         private void MenuVentas_Selected(object sender, RoutedEventArgs e)

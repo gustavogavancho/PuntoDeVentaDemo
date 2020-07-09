@@ -31,9 +31,9 @@ namespace PuntoDeVentaDemo.BIZ
             switch (_origen)
             {
                 case "MySql":
-                    return new ProductoManager(new DAL.XAMPP.MySQL.GenericRepository<producto>(new ProductoValidator(), false));
+                    return new ProductoManager(new DAL.XAMPP.MySQL.GenericRepository<producto>(new ProductoValidator()));
                 case "MSSQL":
-                    return new ProductoManager(new DAL.MSSqlLocal.SQLServer.GenericRepository<producto>(new ProductoValidator(), false));
+                    return new ProductoManager(new DAL.MSSqlLocal.SQLServer.GenericRepository<producto>(new ProductoValidator()));
                 default:
                     return null;
             }
@@ -44,9 +44,9 @@ namespace PuntoDeVentaDemo.BIZ
             switch (_origen)
             {
                 case "MySql":
-                    return new VentaManager(new DAL.XAMPP.MySQL.GenericRepository<venta>(new VentaValidator(), false));
+                    return new VentaManager(new DAL.XAMPP.MySQL.GenericRepository<venta>(new VentaValidator()));
                 case "MSSQL":
-                    return new VentaManager(new DAL.MSSqlLocal.SQLServer.GenericRepository<venta>(new VentaValidator(), false));
+                    return new VentaManager(new DAL.MSSqlLocal.SQLServer.GenericRepository<venta>(new VentaValidator()));
                 default:
                     return null;
             }
@@ -57,9 +57,9 @@ namespace PuntoDeVentaDemo.BIZ
             switch (_origen)
             {
                 case "MySql":
-                    return new ProductoVendidoManager(new DAL.XAMPP.MySQL.GenericRepository<productovendido>(new ProductoVendidoValidator(), false));
+                    return new ProductoVendidoManager(new DAL.XAMPP.MySQL.GenericRepository<productovendido>(new ProductoVendidoValidator()));
                 case "MSSQL":
-                    return new ProductoVendidoManager(new DAL.MSSqlLocal.SQLServer.GenericRepository<productovendido>(new ProductoVendidoValidator(), false));
+                    return new ProductoVendidoManager(new DAL.MSSqlLocal.SQLServer.GenericRepository<productovendido>(new ProductoVendidoValidator()));
                 default:
                     return null;
             }

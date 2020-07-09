@@ -122,6 +122,9 @@
     <Compile Include="Views\ProductosUserControl.xaml.cs">
       <DependentUpon>ProductosUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UsuariosUserControl.xaml.cs">
+      <DependentUpon>UsuariosUserControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -143,6 +146,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProductosUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UsuariosUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
