@@ -12,8 +12,14 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
     /// </summary>
     public partial class ProductosUserControl : UserControl
     {
+        #region Variables
+
         IProductoManager _productoManager;
         bool _esNuevo;
+
+        #endregion
+
+        #region Contructor
         public ProductosUserControl()
         {
             InitializeComponent();
@@ -22,16 +28,29 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
             ActualizarTabla();
         }
 
+        #endregion
+
+        #region Métodos
         private void HabilitarCajas(bool isEnable)
         {
             ContenedorCampos.IsEnabled = isEnable;
             BtnNuevo.IsEnabled = !isEnable;
-            BtnEditar.IsEnabled = !isEnable;   
+            BtnEditar.IsEnabled = !isEnable;
             BtnGuardar.IsEnabled = isEnable;
             BtnEliminar.IsEnabled = !isEnable;
             BtnCancelar.IsEnabled = isEnable;
         }
 
+        private void ActualizarTabla()
+        {
+            this.DataContext = new producto();
+            DtgDatos.ItemsSource = null;
+            DtgDatos.ItemsSource = _productoManager.ObtenerTodo;
+        }
+
+        #endregion
+
+        #region Eventos
         private void BtnNuevo_Click(object sender, RoutedEventArgs e)
         {
             _esNuevo = true;
@@ -51,7 +70,7 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
                 }
                 else
                 {
-                    MessageBox.Show(_productoManager.Error, "Tienda", MessageBoxButton.OK, MessageBoxImage.Error); 
+                    MessageBox.Show(_productoManager.Error, "Tienda", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
@@ -100,13 +119,6 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
             }
         }
 
-        private void ActualizarTabla()
-        {
-            this.DataContext = new producto();
-            DtgDatos.ItemsSource = null;
-            DtgDatos.ItemsSource = _productoManager.ObtenerTodo;
-        }
-
         private void BtnEditar_Click(object sender, RoutedEventArgs e)
         {
             producto prod = DtgDatos.SelectedItem as producto;
@@ -132,5 +144,7 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
             Reporteador ventana = new Reporteador("PuntoDeVentaDemo.UI.WPF.Administrador.Reportes.ListadoProductos.rdlc", datos);
             ventana.Show();
         }
+
+        #endregion
     }
 }

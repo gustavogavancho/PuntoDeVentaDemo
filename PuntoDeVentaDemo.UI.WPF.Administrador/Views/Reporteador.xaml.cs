@@ -10,9 +10,15 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
     /// </summary>
     public partial class Reporteador : Window
     {
+        #region Variables
+
         string _reporte;
         List<ReportDataSource> _origenes;
         bool _cargado;
+
+        #endregion
+
+        #region Constructor
         public Reporteador(string nombreReporte, List<ReportDataSource> datos)
         {
             InitializeComponent();
@@ -21,6 +27,9 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
             Contenedor.Load += Contenedor_Local;
         }
 
+        #endregion
+
+        #region Eventos
         private void Contenedor_Local(object sender, EventArgs e)
         {
             if (!_cargado)
@@ -34,5 +43,7 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
                 _cargado = true;
             }
         }
+
+        #endregion
     }
 }

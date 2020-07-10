@@ -15,9 +15,15 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
     /// </summary>
     public partial class HomeUserControl : UserControl
     {
+        #region Variables
+
         IProductoVendidoManager _productoVendidoManager;
         IProductoManager _productoManager;
         IVentaManager _ventaManager;
+
+        #endregion
+
+        #region Constructor
         public HomeUserControl()
         {
             InitializeComponent();
@@ -29,7 +35,7 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
             int i = 1;
             foreach (var item in _productoManager.ObtenerTodo)
             {
-                productos.Add(new VentasDeProductosModel() 
+                productos.Add(new VentasDeProductosModel()
                 {
                     Id = i++,
                     Producto = item.Nombre,
@@ -76,6 +82,9 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
             Grafica(ventas);
         }
 
+        #endregion
+
+        #region Métodos
         private void Grafica(List<VentasPorMesModel> ventas)
         {
             DtgVentas.ItemsSource = ventas;
@@ -90,7 +99,7 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
             LineSeries line = new LineSeries();
             foreach (var item in ventas)
             {
-                line.Points.Add(new DataPoint(item.Id,(double)item.Cantidad));
+                line.Points.Add(new DataPoint(item.Id, (double)item.Cantidad));
             }
             line.Title = "Monto $";
             model.Series.Add(line);
@@ -117,5 +126,7 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
             model.Series.Add(line);
             PlotProducto.Model = model;
         }
+
+        #endregion
     }
 }

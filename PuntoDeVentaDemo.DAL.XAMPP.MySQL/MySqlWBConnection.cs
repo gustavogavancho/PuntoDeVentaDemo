@@ -1,25 +1,40 @@
 ﻿using MySql.Data.MySqlClient;
 using PuntoDeVentaDemo.COMMON.Interfaces;
 using System;
+using System.Configuration;
 using System.Data;
 
 namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
 {
     public class MySqlWBConnection : IDB
     {
+        #region Variables
+
         private MySqlConnection _conexion;
 
+        #endregion
+
+        #region Propiedades
+        public string Error { get; private set; }
+
+        #endregion
+
+        #region Constructor
         public MySqlWBConnection()
         {
             string server = "localhost";
             string database = "tienda";
             string uid = "root";
             string password = "";
+
             _conexion = new MySqlConnection
                 ($"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};SslMode=none;");
             Conectar();
         }
 
+        #endregion
+
+        #region Métodos
         private bool Conectar()
         {
             try
@@ -34,9 +49,6 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
                 return false;
             }
         }
-
-        public string Error { get; private set; }
-
 
         public bool Comando(string command)
         {
@@ -72,6 +84,9 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
             }
         }
 
+        #endregion
+
+        #region Destructor
         ~MySqlWBConnection()
         {
             if (_conexion.State == ConnectionState.Open)
@@ -79,5 +94,7 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
                 _conexion.Close();
             }
         }
+
+        #endregion
     }
 }

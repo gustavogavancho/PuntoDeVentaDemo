@@ -8,7 +8,18 @@ namespace PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer
 {
     public class SQLServerConnection : IDB
     {
+        #region Variables
+
         SqlConnection _connection;
+
+        #endregion
+
+        #region Propiedades
+        public string Error { get; private set; }
+
+        #endregion
+
+        #region Constructor
 
         public SQLServerConnection()
         {
@@ -21,7 +32,9 @@ namespace PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer
             Conectar();
         }
 
+        #endregion
 
+        #region Métodos
         private bool Conectar()
         {
             try
@@ -36,9 +49,6 @@ namespace PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer
                 return false;
             }
         }
-
-        public string Error { get; private set; }
-
 
         public bool Comando(string command)
         {
@@ -74,6 +84,10 @@ namespace PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer
             }
         }
 
+
+        #endregion
+
+        #region Destructor
         ~SQLServerConnection()
         {
             if (_connection.State == ConnectionState.Open)
@@ -81,5 +95,7 @@ namespace PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer
                 _connection.Close();
             }
         }
+
+        #endregion
     }
 }

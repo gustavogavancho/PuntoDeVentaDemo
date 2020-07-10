@@ -15,11 +15,17 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
     /// </summary>
     public partial class NuevaVentaUserControl : UserControl
     {
+        #region Variables
+
         IProductoManager _productoManager;
         IVentaManager _ventaManager;
         IProductoVendidoManager _productoVendidoManager;
         usuario _vendedor;
         List<ProductoVendidoCompletoModel> _productos;
+
+        #endregion
+
+        #region Constructor
         public NuevaVentaUserControl()
         {
             InitializeComponent();
@@ -32,6 +38,35 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
             ActualizarTabla();
         }
 
+        #endregion
+
+        #region Métodos
+        private void ActualizarTabla()
+        {
+            DtgDatos.ItemsSource = null;
+            DtgDatos.ItemsSource = _productos;
+            LblTotal.Content = _productos.Sum(p => p.Total);
+        }
+
+        private object ObtenProductos(List<ProductoVendidoCompletoModel> productos)
+        {
+            List<PartidaVentaModel> datos = new List<PartidaVentaModel>();
+            foreach (var item in productos)
+            {
+                datos.Add(new PartidaVentaModel()
+                {
+                    Cantidad = item.Productovendido.Cantidad,
+                    Nombre = item.Producto.Nombre,
+                    Precio = item.Productovendido.Costo,
+                });
+            }
+            return datos;
+        }
+
+        #endregion
+
+        #region Eventos
+
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
             if (_productos.Count > 0)
@@ -42,13 +77,13 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
                     FechaHora = DateTime.Now,
                     NombreDeUsuario = _vendedor.NombreDeUsuario,
                 };
-                 if (_ventaManager.Insertar(venta))
+                if (_ventaManager.Insertar(venta))
                 {
                     int idVenta = _ventaManager.ObtenerTodo.Max(v => v.IdVenta);
                     foreach (var item in _productos)
                     {
                         item.Productovendido.IdVenta = idVenta;
-                        _productoVendidoManager.Insertar(item.Productovendido); 
+                        _productoVendidoManager.Insertar(item.Productovendido);
                     }
                     MessageBox.Show("Venta realizada...Gracias por su compra!!!", "Tienda", MessageBoxButton.OK, MessageBoxImage.Information);
                     List<ReportDataSource> datos = new List<ReportDataSource>();
@@ -78,21 +113,6 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
             {
                 MessageBox.Show("No se han agregado productos a la venta", "Tienda", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-        }
-
-        private object ObtenProductos(List<ProductoVendidoCompletoModel> productos)
-        {
-            List<PartidaVentaModel> datos = new List<PartidaVentaModel>();
-            foreach (var item in productos)
-            {
-                datos.Add(new PartidaVentaModel()
-                {
-                    Cantidad = item.Productovendido.Cantidad,
-                    Nombre = item.Producto.Nombre,
-                    Precio = item.Productovendido.Costo,
-                });
-            }
-            return datos;
         }
 
         private void BtnAgregarArticulo_Click(object sender, RoutedEventArgs e)
@@ -126,17 +146,10 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
             }
         }
 
-        private void ActualizarTabla()
-        {
-            DtgDatos.ItemsSource = null;
-            DtgDatos.ItemsSource = _productos;
-            LblTotal.Content = _productos.Sum(p => p.Total);
-        }
-
         private void BtnEliminarArticulo_Click(object sender, RoutedEventArgs e)
         {
             ProductoVendidoCompletoModel elemento = DtgDatos.SelectedItem as ProductoVendidoCompletoModel;
-            if (elemento !=  null)
+            if (elemento != null)
             {
                 _productos.Remove(elemento);
                 ActualizarTabla();
@@ -146,5 +159,7 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
                 MessageBox.Show("No se ha selecciona producto", "Tienda", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
+
+        #endregion
     }
 }

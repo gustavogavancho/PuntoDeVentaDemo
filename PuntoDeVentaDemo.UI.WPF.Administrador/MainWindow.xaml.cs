@@ -10,6 +10,8 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Constructor
+
         public MainWindow(usuario usr)
         {
             InitializeComponent();
@@ -17,6 +19,18 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador
             Tools.Tools.Usuario = usr;
         }
 
+        #endregion
+
+        #region Métodos
+        private void MostrarContenido(UserControl control)
+        {
+            Contenedor.Content = null;
+            Contenedor.Content = control;
+        }
+
+        #endregion
+
+        #region Eventos
         private void MenuHome_Selected(object sender, RoutedEventArgs e)
         {
             MostrarContenido(new HomeUserControl());
@@ -25,12 +39,6 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador
         private void MenuProductos_Selected(object sender, RoutedEventArgs e)
         {
             MostrarContenido(new ProductosUserControl());
-        }
-
-        private void MostrarContenido(UserControl control)
-        {
-            Contenedor.Content = null;
-            Contenedor.Content = control;         
         }
 
         private void MenuUsuarios_Selected(object sender, RoutedEventArgs e)
@@ -42,5 +50,7 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador
         {
             MostrarContenido(new VentasUserControl(Contenedor));
         }
+
+        #endregion
     }
 }

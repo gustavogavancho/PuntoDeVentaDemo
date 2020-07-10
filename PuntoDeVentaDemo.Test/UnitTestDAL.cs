@@ -13,12 +13,17 @@ namespace PuntoDeVentaDemo.Test
     [TestClass]
     public class UnitTestDAL
     {
+        #region Variables
+
         IGenericRepository<producto> _productosRepository;
         IGenericRepository<usuario> _usuarioRepository;
         IGenericRepository<venta> _ventaRepository;
         IGenericRepository<productovendido> _productoVendidoRepository;
         Random _r;
 
+        #endregion
+
+        #region Constructor
         public UnitTestDAL()
         {
             _r = new Random();
@@ -27,6 +32,43 @@ namespace PuntoDeVentaDemo.Test
             _ventaRepository = new GenericRepository<venta>(new VentaValidator());
             _productoVendidoRepository = new GenericRepository<productovendido>(new ProductoVendidoValidator());
         }
+
+        #endregion
+
+        #region Métodos
+        private venta CreaVentaDePrueba(string vendedor)
+        {
+            return new venta()
+            {
+                Cliente = "Cliente De Prueba",
+                FechaHora = DateTime.Now,
+                NombreDeUsuario = vendedor,
+            };
+        }
+
+        private usuario CreaUsuarioDePrueba()
+        {
+            return new usuario()
+            {
+                NombreDeUsuario = "PruebaUser",
+                Apellidos = "User",
+                Nombres = "Prueba",
+                Password = "12345",
+            };
+        }
+
+        private producto CrearProductoDePrueba()
+        {
+            return new producto()
+            {
+                Costo = _r.Next(1, 100),
+                Nombre = "Producto de prueba" + _r.Next(),
+            };
+        }
+
+        #endregion
+
+        #region TestMethods
 
         [TestMethod]
         public void TestProductos()
@@ -42,10 +84,10 @@ namespace PuntoDeVentaDemo.Test
 
             //Verificamos que la cantidad de productos se incremento en uno despues de ingresar el producto
             Assert.AreEqual(cantidadProductos + 1, _productosRepository.Read.Count(), "No se inserto el registro");
-            
+
             //Obtengo el último Id
             int ultimoId = _productosRepository.Read.Max(j => j.IdProducto);
-            
+
             //Obtengo el último registros en base al Id obtenido
             producto modificado = _productosRepository.SearchById(ultimoId.ToString());
 
@@ -128,34 +170,6 @@ namespace PuntoDeVentaDemo.Test
             Assert.IsTrue(_usuarioRepository.Delete(usuarioDePrueba.NombreDeUsuario), _usuarioRepository.Error);
         }
 
-        private venta CreaVentaDePrueba(string vendedor)
-        {
-            return new venta()
-            {
-                Cliente = "Cliente De Prueba",
-                FechaHora = DateTime.Now,
-                NombreDeUsuario = vendedor,
-            };
-        }
-
-        private usuario CreaUsuarioDePrueba()
-        {
-            return new usuario()
-            {
-                NombreDeUsuario = "PruebaUser",
-                Apellidos = "User",
-                Nombres = "Prueba",
-                Password = "12345",
-            };
-        }
-
-        private producto CrearProductoDePrueba()
-        {
-            return new producto()
-            {
-                Costo = _r.Next(1, 100),
-                Nombre = "Producto de prueba" + _r.Next(),
-            };
-        }
+        #endregion
     }
 }

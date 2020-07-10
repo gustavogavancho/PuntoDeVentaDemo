@@ -13,18 +13,26 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseDTO
     {
+        #region Variables
+
         private MySqlWBConnection _db;
         private bool _idEsAutonumerico;
         private AbstractValidator<T> _validator;
 
+        #endregion
+
+        #region Propiedades
+        public string Error { get; private set; }
+
+        #endregion
+
+        #region Métodos
         public GenericRepository(AbstractValidator<T> validator, bool idEsAutonumerico = true)
         {
             _validator = validator;
             _idEsAutonumerico = idEsAutonumerico;
             _db = new MySqlWBConnection();
         }
-
-        public string Error { get; private set; }
 
         public IEnumerable<T> Read
         {
@@ -93,7 +101,7 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
                             break;
                     }
 
-                    if (i != campos.Length -1)
+                    if (i != campos.Length - 1)
                     {
                         sql1 += $" ,";
                         sql2 += $" ,";
@@ -238,14 +246,14 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
                             sql += $"'{v.Year}-{v.Month}-{v.Day} {v.Hour}:{v.Minute}:00'";
                             break;
                         default:
-                            sql += " " +valor;
+                            sql += " " + valor;
                             break;
                     }
                     if (i == 0)
                     {
                         sql2 += sql;
                     }
-                    if (i != campos.Length -1)
+                    if (i != campos.Length - 1)
                     {
                         sql += " ,";
                     }
@@ -269,5 +277,7 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
                 return false;
             }
         }
+
+        #endregion
     }
 }

@@ -5,6 +5,7 @@ namespace PuntoDeVentaDemo.COMMON.Validadores
 {
     public class ProductoVendidoValidator : AbstractValidator<productovendido>
     {
+        #region Constructor
         public ProductoVendidoValidator()
         {
             RuleFor(p => p.Cantidad).NotNull().NotEmpty().GreaterThan(0);
@@ -12,5 +13,7 @@ namespace PuntoDeVentaDemo.COMMON.Validadores
             RuleFor(p => p.IdProducto).NotNull().NotEmpty();
             RuleFor(p => p.IdVenta).NotNull().NotEmpty();
         }
+
+        #endregion
     }
 }

@@ -13,9 +13,20 @@ namespace PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseDTO
     {
+        #region Variables
+
         private SQLServerConnection _db;
         private bool _idEsAutonumerico;
         private AbstractValidator<T> _validator;
+
+        #endregion
+
+        #region Propiedades
+        public string Error { get; private set; }
+
+        #endregion
+
+        #region Métodos
 
         public GenericRepository(AbstractValidator<T> validator, bool idEsAutonumerico = true)
         {
@@ -23,8 +34,6 @@ namespace PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer
             _idEsAutonumerico = idEsAutonumerico;
             _db = new SQLServerConnection();
         }
-
-        public string Error { get; private set; }
 
         public IEnumerable<T> Read
         {
@@ -269,5 +278,7 @@ namespace PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer
                 return false;
             }
         }
+
+        #endregion
     }
 }

@@ -10,8 +10,14 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
     /// </summary>
     public partial class UsuariosUserControl : UserControl
     {
+        #region Variables
+
         IUsuarioManager _usuarioManager;
         bool _esNuevo;
+
+        #endregion
+
+        #region Constructor
         public UsuariosUserControl()
         {
             InitializeComponent();
@@ -20,6 +26,9 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
             ActualizarTabla();
         }
 
+        #endregion
+
+        #region Métodos
         private void ActualizarTabla()
         {
             this.DataContext = new usuario();
@@ -36,6 +45,10 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
             BtnEliminar.IsEnabled = !isEnable;
             BtnCancelar.IsEnabled = isEnable;
         }
+
+        #endregion
+
+        #region Eventos
 
         private void BtnNuevo_Click(object sender, RoutedEventArgs e)
         {
@@ -119,5 +132,7 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
                 MessageBox.Show("Primero debe seleccionar un usuario", "Tienda", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+        #endregion
     }
 }

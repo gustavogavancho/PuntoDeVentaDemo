@@ -9,13 +9,22 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
     /// </summary>
     public partial class Login : Window
     {
+        #region Variables
+
         IUsuarioManager _manager;
 
+        #endregion
+
+        #region Constructor
         public Login()
         {
             InitializeComponent();
             _manager = Tools.Tools.FactoryManager.UsuarioManager();
         }
+
+        #endregion
+
+        #region Eventos
 
         private void BtnIniciar_Click(object sender, RoutedEventArgs e)
         {
@@ -37,5 +46,7 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
         {
             this.Close();
         }
+
+        #endregion
     }
 }

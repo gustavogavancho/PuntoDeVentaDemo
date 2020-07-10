@@ -10,6 +10,8 @@ namespace PuntoDeVentaDemo.COMMON.Interfaces
     /// </summary>
     public interface IVentaManager : IGenericManager<venta>
     {
+        #region Métodos
+
         /// <summary>
         /// Obtiene todas las ventas en el intervalo especificado
         /// </summary>
@@ -26,5 +28,7 @@ namespace PuntoDeVentaDemo.COMMON.Interfaces
         /// <param name="fin">Fecha de fin</param>
         /// <returns>Conjunto de ventas realizadas al cliente en un intervalo especificado</returns>
         IEnumerable<VentaCompletaModel> VentasDeClienteEnIntervalor(string nombreCliente, DateTime Inicio, DateTime fin);
+
+        #endregion
     }
 }
