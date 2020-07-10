@@ -7,13 +7,22 @@ namespace PuntoDeVentaDemo.BIZ
 {
     public abstract class GenericManager<T> : IGenericManager<T> where T : BaseDTO
     {
+        #region Variable
+
         internal readonly IGenericRepository<T> _repositorio;
+
+        #endregion
+
+        #region Constructor
 
         public GenericManager(IGenericRepository<T> repositorio)
         {
             _repositorio = repositorio;
         }
 
+        #endregion
+
+        #region Métodos
         public string Error
         {
             get
@@ -49,5 +58,7 @@ namespace PuntoDeVentaDemo.BIZ
         {
             return _repositorio.Create(entidad);
         }
+
+        #endregion
     }
 }

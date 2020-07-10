@@ -56,6 +56,10 @@
     <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms">
+      <HintPath>..\..\..\..\Downloads\Microsoft.ReportViewer.WinForms\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=8.0.20.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.20\lib\net48\MySql.Data.dll</HintPath>
     </Reference>
@@ -99,6 +103,7 @@
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -111,9 +116,11 @@
     <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.20\lib\net48\Ubiety.Dns.Core.dll</HintPath>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="Zstandard.Net, Version=1.1.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.20\lib\net48\Zstandard.Net.dll</HintPath>
     </Reference>
@@ -124,6 +131,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Tools\Tools.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\HomeUserControl.xaml.cs">
       <DependentUpon>HomeUserControl.xaml</DependentUpon>
     </Compile>
@@ -135,6 +143,9 @@
     </Compile>
     <Compile Include="Views\ProductosUserControl.xaml.cs">
       <DependentUpon>ProductosUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reporteador.xaml.cs">
+      <DependentUpon>Reporteador.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UsuariosUserControl.xaml.cs">
       <DependentUpon>UsuariosUserControl.xaml</DependentUpon>
@@ -174,6 +185,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Reporteador.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UsuariosUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -201,7 +216,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ListadoProductos.rdlc" />
+    <EmbeddedResource Include="Reportes\Venta.rdlc" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\PuntoDeVentaDemo.COMMON.Entidades.producto.datasource" />
+    <None Include="Properties\DataSources\PuntoDeVentaDemo.COMMON.Entidades.venta.datasource" />
+    <None Include="Properties\DataSources\PuntoDeVentaDemo.COMMON.Modelos.PartidaVentaModel.datasource" />
+    <None Include="Properties\DataSources\PuntoDeVentaDemo.COMMON.Modelos.ProductoVendidoCompletoModel.datasource" />
+    <None Include="Properties\DataSources\PuntoDeVentaDemo.COMMON.Modelos.VentaCompletaModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -241,8 +263,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

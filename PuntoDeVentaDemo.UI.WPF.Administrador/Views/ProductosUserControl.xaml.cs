@@ -1,5 +1,7 @@
-﻿using PuntoDeVentaDemo.COMMON.Entidades;
+﻿using Microsoft.Reporting.WinForms;
+using PuntoDeVentaDemo.COMMON.Entidades;
 using PuntoDeVentaDemo.COMMON.Interfaces;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -118,6 +120,17 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
             {
                 MessageBox.Show("Primero debe seleccionar un producto", "Tienda", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void BtnImprimir_Click(object sender, RoutedEventArgs e)
+        {
+            List<ReportDataSource> datos = new List<ReportDataSource>();
+            ReportDataSource productos = new ReportDataSource();
+            productos.Name = "Productos";
+            productos.Value = _productoManager.ObtenerTodo;
+            datos.Add(productos);
+            Reporteador ventana = new Reporteador("PuntoDeVentaDemo.UI.WPF.Administrador.Reportes.ListadoProductos.rdlc", datos);
+            ventana.Show();
         }
     }
 }

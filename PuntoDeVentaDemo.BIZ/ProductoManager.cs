@@ -7,10 +7,15 @@ namespace PuntoDeVentaDemo.BIZ
 {
     public class ProductoManager : GenericManager<producto>, IProductoManager
     {
+        #region Constructor
+
         public ProductoManager(IGenericRepository<producto> repositorio) : base(repositorio)
         {
         }
 
+        #endregion
+
+        #region Métodos
         public producto BuscarProductoPorNombreExacto(string nombre)
         {
             return _repositorio.Query(x => x.Nombre == nombre).SingleOrDefault();
@@ -20,5 +25,7 @@ namespace PuntoDeVentaDemo.BIZ
         {
             return _repositorio.Query(x => x.Nombre.ToLower().Contains(criterio.ToLower()));
         }
+
+        #endregion
     }
 }

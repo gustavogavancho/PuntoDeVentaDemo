@@ -11,26 +11,27 @@ namespace PuntoDeVentaDemo.COMMON.Interfaces
     /// <typeparam name="T">Es un tipo de entidad (Clase) a la que se refiere una tabla</typeparam>
     public interface IGenericRepository<T> where T:BaseDTO
     {
+        #region Propiedades
+
         /// <summary>
         /// Proporciona información sobre el error ocurrido en alguna de las operaciones
         /// </summary>
         string Error { get; }
 
-        /*
-         * CRUD => Create(insert), Read(select), Update(update), Delete(delete)
-         */
+        /// <summary>
+        /// Obtiene todos los registros de la tabla
+        /// </summary>
+        IEnumerable<T> Read { get; }
 
+        #endregion
+
+        #region Métodos
         /// <summary>
         /// Inserta una entidad en la tabla
         /// </summary>
         /// <param name="entidad">Entidad a insertar</param>
         /// <returns>Confirmación de la Inserción</returns>
         bool Create(T entidad);
-
-        /// <summary>
-        /// Obtiene todos los registros de la tabla
-        /// </summary>
-        IEnumerable<T> Read { get; }
 
         /// <summary>
         /// Actualiza un registro en la table en base a la propiedad Id
@@ -46,8 +47,6 @@ namespace PuntoDeVentaDemo.COMMON.Interfaces
         /// <returns>Confirmación de eliminación</returns>
         bool Delete(string id);
 
-        //Query -> Realizar consultas de acuerdo a la tabla, mediante expresiones lambda
-
         /// <summary>
         /// Realiza una consulta personalizada a la tabla
         /// </summary>
@@ -61,5 +60,7 @@ namespace PuntoDeVentaDemo.COMMON.Interfaces
         /// <param name="id">Id de la entidad a obtener</param>
         /// <returns>Entidad comlpleta que le corresponde el Id proporcionado</returns>
         T SearchById(string id);
+
+        #endregion
     }
 }

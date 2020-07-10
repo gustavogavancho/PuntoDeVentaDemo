@@ -8,10 +8,14 @@ namespace PuntoDeVentaDemo.BIZ
 {
     public class ProductoVendidoManager : GenericManager<productovendido>, IProductoVendidoManager
     {
+        #region Constructor
         public ProductoVendidoManager(IGenericRepository<productovendido> repositorio) : base(repositorio)
         {
         }
 
+        #endregion
+
+        #region Métodos
         public IEnumerable<productovendido> ProductosDeUnaVenta(int idVenta)
         {
             return _repositorio.Query(p => p.IdVenta == idVenta);
@@ -21,5 +25,7 @@ namespace PuntoDeVentaDemo.BIZ
         {
             return _repositorio.Query(p => p.IdProducto == idProducto).Sum(v => v.Cantidad);
         }
+
+        #endregion
     }
 }

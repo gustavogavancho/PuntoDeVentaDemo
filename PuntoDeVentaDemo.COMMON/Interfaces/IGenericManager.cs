@@ -10,10 +10,21 @@ namespace PuntoDeVentaDemo.COMMON.Interfaces
     /// <typeparam name="T">Tipo de entidad de la cual se implementa el Manager</typeparam>
     public interface IGenericManager<T> where T: BaseDTO
     {
+        #region Propiedades
+
         /// <summary>
         /// Proporciona el error relacionado después de alguna operación
         /// </summary>
         string Error { get; }
+
+        /// <summary>
+        /// Obtiene todos los registros de la tabla
+        /// </summary>
+        IEnumerable<T> ObtenerTodo { get; }
+
+        #endregion
+
+        #region Métodos
 
         /// <summary>
         /// Insertar una entidad en la tabla
@@ -21,11 +32,6 @@ namespace PuntoDeVentaDemo.COMMON.Interfaces
         /// <param name="entidad">Entidad a insertar</param>
         /// <returns>Confirmación de la Inserción</returns>
         bool Insertar(T entidad);
-
-        /// <summary>
-        /// Obtiene todos los registros de la tabla
-        /// </summary>
-        IEnumerable<T> ObtenerTodo { get; }
 
         /// <summary>
         /// Actualiza un registro en la tabla en base a su propiedad Id
@@ -47,5 +53,8 @@ namespace PuntoDeVentaDemo.COMMON.Interfaces
         /// <param name="id">Id del elemento a obtener</param>
         /// <returns>La entidad completa correspondiente al Id proporcionado</returns>
         T BuscarPorId(string id);
+
+        #endregion
+
     }
 }

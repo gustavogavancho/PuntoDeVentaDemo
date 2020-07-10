@@ -1,20 +1,12 @@
-﻿using PuntoDeVentaDemo.COMMON.Entidades;
+﻿using Microsoft.Reporting.WinForms;
+using PuntoDeVentaDemo.COMMON.Entidades;
 using PuntoDeVentaDemo.COMMON.Interfaces;
 using PuntoDeVentaDemo.COMMON.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
 {
@@ -56,9 +48,26 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
                     foreach (var item in _productos)
                     {
                         item.Productovendido.IdVenta = idVenta;
-                        _productoVendidoManager.Insertar(item.Productovendido);
+                        _productoVendidoManager.Insertar(item.Productovendido); 
                     }
                     MessageBox.Show("Venta realizada...Gracias por su compra!!!", "Tienda", MessageBoxButton.OK, MessageBoxImage.Information);
+                    List<ReportDataSource> datos = new List<ReportDataSource>();
+                    List<venta> listaDeVentas = new List<venta>();
+                    listaDeVentas.Add(venta);
+                    ReportDataSource objVenta = new ReportDataSource()
+                    {
+                        Name = "Venta",
+                        Value = listaDeVentas,
+                    };
+                    ReportDataSource objProductos = new ReportDataSource()
+                    {
+                        Name = "Productos",
+                        Value = ObtenProductos(_productos),
+                    };
+                    datos.Add(objVenta);
+                    datos.Add(objProductos);
+                    Reporteador ventana = new Reporteador("PuntoDeVentaDemo.UI.WPF.Administrador.Reportes.Venta.rdlc", datos);
+                    ventana.ShowDialog();
                 }
                 else
                 {
@@ -69,6 +78,21 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
             {
                 MessageBox.Show("No se han agregado productos a la venta", "Tienda", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+        }
+
+        private object ObtenProductos(List<ProductoVendidoCompletoModel> productos)
+        {
+            List<PartidaVentaModel> datos = new List<PartidaVentaModel>();
+            foreach (var item in productos)
+            {
+                datos.Add(new PartidaVentaModel()
+                {
+                    Cantidad = item.Productovendido.Cantidad,
+                    Nombre = item.Producto.Nombre,
+                    Precio = item.Productovendido.Costo,
+                });
+            }
+            return datos;
         }
 
         private void BtnAgregarArticulo_Click(object sender, RoutedEventArgs e)

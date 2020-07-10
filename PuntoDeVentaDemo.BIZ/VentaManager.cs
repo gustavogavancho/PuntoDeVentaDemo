@@ -9,10 +9,15 @@ namespace PuntoDeVentaDemo.BIZ
 {
     public class VentaManager : GenericManager<venta>, IVentaManager
     {
+        #region Variables
+
         IProductoVendidoManager _productoVendidoManager;
         IUsuarioManager _usuarioManager;
         IProductoManager _productoManager;
 
+        #endregion
+
+        #region Constructor
         public VentaManager(IGenericRepository<venta> repositorio, IProductoVendidoManager productoVendidoManager, IUsuarioManager usuarioManager, IProductoManager productoManager) : base(repositorio)
         {
             _productoVendidoManager = productoVendidoManager;
@@ -20,6 +25,9 @@ namespace PuntoDeVentaDemo.BIZ
             _productoManager = productoManager;
         }
 
+        #endregion
+
+        #region Métodos
         public IEnumerable<VentaCompletaModel> VentasDeClienteEnIntervalor(string nombreCliente, DateTime inicio, DateTime fin)
         {
             DateTime rInicio = new DateTime(inicio.Year, inicio.Month, inicio.Day, 0, 0, 0);
@@ -29,7 +37,7 @@ namespace PuntoDeVentaDemo.BIZ
 
         public IEnumerable<VentaCompletaModel> VentasEnIntervalo(DateTime inicio, DateTime fin)
         {
-            DateTime rInicio = new DateTime(inicio.Year, inicio.Month, inicio.Day, 0,0,0);
+            DateTime rInicio = new DateTime(inicio.Year, inicio.Month, inicio.Day, 0, 0, 0);
             DateTime rFin = new DateTime(fin.Year, fin.Month, fin.Day, 0, 0, 0).AddDays(1);
             var ventas = _repositorio.Query(v => v.FechaHora >= rInicio && v.FechaHora <= rFin);
             return CompletaVentas(ventas);
@@ -63,5 +71,7 @@ namespace PuntoDeVentaDemo.BIZ
             }
             return datos;
         }
+
+        #endregion
     }
 }

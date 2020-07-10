@@ -6,13 +6,21 @@ namespace PuntoDeVentaDemo.BIZ
 {
     public class Factory
     {
+        #region Variable
+
         string _origen;
 
+        #endregion
+
+        #region Constructor
         public Factory(string origen)
         {
             _origen = origen;
         }
 
+        #endregion
+
+        #region Métodos
         public IUsuarioManager UsuarioManager()
         {
             switch (_origen)
@@ -64,5 +72,7 @@ namespace PuntoDeVentaDemo.BIZ
                     return null;
             }
         }
+
+        #endregion
     }
 }

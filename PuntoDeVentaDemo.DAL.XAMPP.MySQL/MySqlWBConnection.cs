@@ -1,10 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using PuntoDeVentaDemo.COMMON.Interfaces;
 using System;
-using System.Collections.Specialized;
-using System.Configuration;
 using System.Data;
-using System.Linq;
 
 namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
 {
