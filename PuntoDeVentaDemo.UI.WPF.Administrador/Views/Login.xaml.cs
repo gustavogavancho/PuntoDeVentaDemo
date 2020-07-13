@@ -1,5 +1,7 @@
 ﻿using PuntoDeVentaDemo.COMMON.Entidades;
 using PuntoDeVentaDemo.COMMON.Interfaces;
+using PuntoDeVentaDemo.Tools;
+using System.Configuration;
 using System.Windows;
 
 namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
@@ -19,6 +21,7 @@ namespace PuntoDeVentaDemo.UI.WPF.Administrador.Views
         public Login()
         {
             InitializeComponent();
+            ConectionString.MySQL = ConfigurationManager.ConnectionStrings["MySQLConnection"].ConnectionString;
             _manager = Tools.Tools.FactoryManager.UsuarioManager();
         }
 

@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using PuntoDeVentaDemo.COMMON.Interfaces;
+using PuntoDeVentaDemo.Tools;
 using System;
 using System.Configuration;
 using System.Data;
@@ -27,8 +28,8 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
             string uid = "root";
             string password = "";
 
-            _conexion = new MySqlConnection
-                ($"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};SslMode=none;");
+            //_conexion = new MySqlConnection($"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};SslMode=none;");
+            _conexion = new MySqlConnection(ConectionString.MySQL);
             Conectar();
         }
 
