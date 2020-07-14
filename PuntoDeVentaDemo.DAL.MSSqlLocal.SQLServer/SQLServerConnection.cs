@@ -1,4 +1,5 @@
 ﻿using PuntoDeVentaDemo.COMMON.Interfaces;
+using PuntoDeVentaDemo.Tools;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -23,12 +24,7 @@ namespace PuntoDeVentaDemo.DAL.MSSqlLocal.SQLServer
 
         public SQLServerConnection()
         {
-            string server = @"GUSTAVO";
-            string database = "tienda";
-            string uid = "tiendauser";
-            string password = "12345";
-            _connection = new SqlConnection
-                ($"Data Source={server};Initial Catalog={database};Persist Security Info=True;User ID={uid};Password={password}");
+            _connection = new SqlConnection(ConnectionString.SQLServer);
             Conectar();
         }
 

@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using PuntoDeVentaDemo.COMMON.Interfaces;
+using PuntoDeVentaDemo.Tools;
 using System;
 using System.Configuration;
 using System.Data;
@@ -22,13 +23,8 @@ namespace PuntoDeVentaDemo.DAL.XAMPP.MySQL
         #region Constructor
         public MySqlWBConnection()
         {
-            string server = "localhost";
-            string database = "tienda";
-            string uid = "root";
-            string password = "";
+            _conexion = new MySqlConnection(ConnectionString.MySQL);
 
-            _conexion = new MySqlConnection
-                ($"SERVER={server};DATABASE={database};UID={uid};PASSWORD={password};SslMode=none;");
             Conectar();
         }
 

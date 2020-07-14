@@ -55,6 +55,5 @@ namespace PuntoDeVentaDemo.COMMON.Interfaces
         T BuscarPorId(string id);
 
         #endregion
-
     }
 }

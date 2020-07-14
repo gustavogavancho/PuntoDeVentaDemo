@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PuntoDeVentaDemo.COMMON\PuntoDeVentaDemo.COMMON.csproj" />
+    <ProjectReference Include="..\PuntoDeVentaDemo.Tools\PuntoDeVentaDemo.Tools.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,15 +4,26 @@ using PuntoDeVentaDemo.COMMON.Validadores;
 
 namespace PuntoDeVentaDemo.BIZ
 {
+    /// <summary>
+    /// Proporciona la creación de objetos según el parámetro de base de datos que uno indique (SQL Server o MySql)
+    /// </summary>
     public class Factory
     {
         #region Variable
 
+        /// <summary>
+        /// Variable de seleccion de origen
+        /// </summary>
         string _origen;
 
         #endregion
 
         #region Constructor
+
+        /// <summary>
+        /// Construuye un objeto de la clase y asigna el origen según lo requiera (SQL Server o MySql)
+        /// </summary>
+        /// <param name="origen"></param>
         public Factory(string origen)
         {
             _origen = origen;
@@ -21,6 +32,11 @@ namespace PuntoDeVentaDemo.BIZ
         #endregion
 
         #region Métodos
+
+        /// <summary>
+        /// Crea una instancia de Usuario Manager según el origien seleccioando
+        /// </summary>
+        /// <returns>Instancia de usuario manager</returns>
         public IUsuarioManager UsuarioManager()
         {
             switch (_origen)
@@ -34,6 +50,10 @@ namespace PuntoDeVentaDemo.BIZ
             }
         }
 
+        /// <summary>
+        /// Crea una instancia de Producto Manager según el origen seleccionado
+        /// </summary>
+        /// <returns>Instancia de producto manager</returns>
         public IProductoManager ProductoManager()
         {
             switch (_origen)
@@ -47,6 +67,10 @@ namespace PuntoDeVentaDemo.BIZ
             }
         }
 
+        /// <summary>
+        /// Crea una instancia de Venta Manager según el origen seleccionado
+        /// </summary>
+        /// <returns>Instancia de venta manager</returns>
         public IVentaManager VentaManager()
         {
             switch (_origen)
@@ -60,6 +84,10 @@ namespace PuntoDeVentaDemo.BIZ
             }
         }
 
+        /// <summary>
+        /// Crea una instancia de ProductoVendido Manager según el origen seleccionado
+        /// </summary>
+        /// <returns>Instancia de Producto Manager</returns>
         public IProductoVendidoManager ProductVendidoManager()
         {
             switch (_origen)

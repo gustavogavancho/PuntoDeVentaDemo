@@ -4,7 +4,7 @@ namespace PuntoDeVentaDemo.COMMON.Entidades
 {
     public abstract class BaseDTO : IDisposable
     {
-        #region Variable
+        #region Variables
 
         private bool _isDiposed;
 

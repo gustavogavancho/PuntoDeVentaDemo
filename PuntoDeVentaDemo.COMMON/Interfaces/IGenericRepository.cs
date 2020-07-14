@@ -26,6 +26,7 @@ namespace PuntoDeVentaDemo.COMMON.Interfaces
         #endregion
 
         #region Métodos
+
         /// <summary>
         /// Inserta una entidad en la tabla
         /// </summary>

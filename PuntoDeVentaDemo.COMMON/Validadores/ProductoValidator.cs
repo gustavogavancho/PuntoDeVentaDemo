@@ -6,6 +6,10 @@ namespace PuntoDeVentaDemo.COMMON.Validadores
     public class ProductoValidator : AbstractValidator<producto>
     {
         #region Constructor
+
+        /// <summary>
+        /// Se especifican los requisitos que debe tener el modelo de datos "Producto" para su validación
+        /// </summary>
         public ProductoValidator()
         {
             RuleFor(p => p.Costo).NotNull().GreaterThan(0);

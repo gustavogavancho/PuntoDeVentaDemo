@@ -2,6 +2,9 @@
 
 namespace PuntoDeVentaDemo.COMMON.Modelos
 {
+    /// <summary>
+    /// Modelo de datos para la interfaz de usuario
+    /// </summary>
     public class ProductoVendidoCompletoModel
     {
         #region Propiedades
